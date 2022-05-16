@@ -11,8 +11,6 @@
         margin-left: 37.5%;
         margin-right: 37.5%;
         display: block;
-        background-color: rgb(78, 41, 22);
-        border-color: rgb(54, 26, 11);
     }
 
     p {
@@ -52,6 +50,8 @@ body {
     height: 50px;
     margin-top: 5%;
     margin-bottom: 5%;
+    background-color: rgb(78, 41, 22);
+    border-color: rgb(54, 26, 11);
 }
 
 .bug_title_image {

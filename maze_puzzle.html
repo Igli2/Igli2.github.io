@@ -18,8 +18,20 @@
         <p>
             Wie lange ist der kürzeste Weg zum Ausgang?
         </p>
-        <input class="number_input" type="number">
-        <br>
-        <input class="check_input" type="submit" value="Überprüfen">
+        <input id="number_input" class="number_input" type="number">
+        <p id="feedback"></p>
+        <button class="check_input" onclick="validate()">
+            Überprüfen
+        </button>
+
+        <script>
+            function validate() {
+                if (document.getElementById("number_input").value == 30) {
+                    document.getElementById("feedback").innerHTML = "Richtige Antwort :) <a href='index.html'>Weiter</a>";
+                } else {
+                    document.getElementById("feedback").innerHTML = "Falsche Antwort :(";
+                }
+            }
+        </script>
     </body>
 </html>
