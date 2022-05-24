@@ -1,0 +1,37 @@
+<html>
+    <head>
+        <script type="text/javascript" src="sjcl.js"></script>
+        <script>
+            function generate_encrypted_body(password) {
+                var h = sjcl.codec.hex;
+                var key = h.fromBits(sjcl.misc.pbkdf2(password, "", 2048));
+                var cipher = sjcl.encrypt(key, document.getElementById("body").outerHTML);
+                console.log(cipher);
+            }
+            function decrypt_content() {
+                var password = get_url_parameter("pwd");
+                var h = sjcl.codec.hex;
+                var key = h.fromBits(sjcl.misc.pbkdf2(password, "", 2048));
+                var cipher = document.getElementById("body").innerHTML;
+                var text = sjcl.decrypt(key, cipher);
+                document.getElementById("body").innerHTML = text;
+            }
+            function get_url_parameter(name) {
+                var sPageURL = window.location.search.substring(1);
+                var sURLVariables = sPageURL.split('&');
+                for (var i = 0; i < sURLVariables.length; i++) {
+                    var sParameterName = sURLVariables[i].split('=');
+                    if (sParameterName[0] == name) {
+                        return sParameterName[1];
+                    }
+                }
+            }
+            window.onload = decrypt_content;
+        </script>
+    </head>
+    <body>
+        <div id="body">
+            {"iv":"3A+DUwU8grpSdtxmCxlTyg==","v":1,"iter":10000,"ks":128,"ts":64,"mode":"ccm","adata":"","cipher":"aes","salt":"donh/L5JcNE=","ct":"z8SB2vEK3JI+9Ovhzx71oRhBBqkZB0Bj/ozHg19QBsu9av0EkqTkXvvKg20KcoLBThrq+cG0t9KrRcoHqfYTbaVVVBOFuO/RBLNuyWQULXUJUA1MPj6/9VkP+ba0+1pmlBXpsmzSVbdfGCCUs/NB1Cg34SI9FjG+TlBlfWy4OINCHa9JdImg0OuKMVin45oZUnZRqIUxj9IVEcciwfiM83vES07aGs1BoHTX/TgMCCsOkq1JQ4vVmp6HzBMF8zN1WsVP7lQ="}
+        </div>
+    </body>
+</html>

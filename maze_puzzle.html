@@ -27,21 +27,8 @@
 
         <script>
             function validate() {
-                if (document.getElementById("number_input").value == 30) {
-                    document.getElementById("feedback").innerHTML = "Richtige Antwort :) <a href='index.html'>Weiter</a>";
-                } else {
-                    document.getElementById("feedback").innerHTML = "Falsche Antwort :(";
-                }
-            }
-
-            // also encrypt website content with this
-            function encrypt() {
-                var h = sjcl.codec.hex;
-                var key = h.fromBits(sjcl.misc.pbkdf2("Password", "", 2048));
-                var cipher = sjcl.encrypt(key, "Baum");
-                console.log(cipher);
-                var text = sjcl.decrypt(key, '{"iv":"39RDn8VB1rpUI87vH4CGsw==","v":1,"iter":10000,"ks":128,"ts":64,"mode":"ccm","adata":"","cipher":"aes","salt":"KA19UPD7An8=","ct":"meAQ65EuauPylJKB"}');
-                console.log(text);
+                var input = document.getElementById("number_input").value;
+                document.getElementById("feedback").innerHTML = "Wenn die Antwort richtig ist, sollte diese Website entschlüsselt sein: <a href='encrypted.html?pwd=" + input + "'>Weiter</a>";
             }
         </script>
     </body>
