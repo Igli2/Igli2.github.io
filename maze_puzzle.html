@@ -1,5 +1,6 @@
 <html>
     <head>
+        <script type="text/javascript" src="sjcl.js"></script>
         <link rel="stylesheet" href="maze_puzzle.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Macondo">
         <title>
@@ -31,6 +32,16 @@
                 } else {
                     document.getElementById("feedback").innerHTML = "Falsche Antwort :(";
                 }
+            }
+
+            // also encrypt website content with this
+            function encrypt() {
+                var h = sjcl.codec.hex;
+                var key = h.fromBits(sjcl.misc.pbkdf2("Password", "", 2048));
+                var cipher = sjcl.encrypt(key, "Baum");
+                console.log(cipher);
+                var text = sjcl.decrypt(key, '{"iv":"39RDn8VB1rpUI87vH4CGsw==","v":1,"iter":10000,"ks":128,"ts":64,"mode":"ccm","adata":"","cipher":"aes","salt":"KA19UPD7An8=","ct":"meAQ65EuauPylJKB"}');
+                console.log(text);
             }
         </script>
     </body>
