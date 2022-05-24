@@ -1,0 +1,31 @@
+<html>
+    <head>
+        <script type="text/javascript" src="../sjcl.js"></script>
+        <link rel="stylesheet" href="maze_puzzle.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Macondo">
+        <title>
+            Escape Room
+        </title>
+    </head>
+    <body>
+        <p>
+            [English Translation]
+        </p>
+        <img class="map_image" src="../map.png">
+        <p>
+            [English Translation]
+        </p>
+        <input id="number_input" class="number_input" type="number">
+        <p id="feedback"></p>
+        <button class="check_input" onclick="validate()">
+            Check
+        </button>
+
+        <script>
+            function validate() {
+                var input = document.getElementById("number_input").value;
+                document.getElementById("feedback").innerHTML = "[Translate]: <a href='encrypted.html?pwd=" + input + "'>Continue</a>";
+            }
+        </script>
+    </body>
+</html>
